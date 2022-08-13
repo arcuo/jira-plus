@@ -10,16 +10,16 @@ import './popup.css';
   // To get storage access, we have to mention it in `permissions` property of manifest.json file
   // More information on Permissions can we found at
   // https://developer.chrome.com/extensions/declare_permissions
-  const counterStorage = {
+  const settingsStorage = {
     get: (cb: any) => {
-      chrome.storage.sync.get(['count'], (result) => {
-        cb(result.count);
+      chrome.storage.sync.get(['jira-plus:epic-links'], (result) => {
+        cb(result['jira-plus:epic-links']);
       });
     },
     set: (value: any, cb: any) => {
       chrome.storage.sync.set(
         {
-          count: value,
+          "jira-plus:epic-links": value,
         },
         () => {
           cb();

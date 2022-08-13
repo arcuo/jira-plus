@@ -17,17 +17,17 @@ html {
 body {
   width: fit-content;
   height: fit-content;
-  padding: 2em;
 }
 
 .app {
   height: 100%;
   display: flex;
+  gap: 1em;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  padding: 20px;
+  padding: 2em 2em 1em 2em;
 }
 
 .title {
@@ -39,56 +39,33 @@ body {
 
 .subtitle {
   font-size: 12px;
-}
-
-code {
-  font-size: 12px;
-  font-family: inherit;
-  background-color: rgba(254, 237, 185, 0.3);
-  padding: 2px 4px;
-  border-radius: 2px;
-}
-
-.counter-label {
-  font-size: 12px;
-  margin-bottom: 5px;
-}
-
-.counter {
-  font-size: 36px;
-  font-weight: 700;
-}
-
-.button-container {
-  margin-top: 15px;
-}
-
-.button {
-  border: 0;
-  display: inline-block;
-  padding: 10px 20px;
-  margin-right: 4px;
-  margin-left: 4px;
-  background-color: bisque;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 4px;
-  text-decoration: none;
-  transition: transform 0.2s ease;
-  user-select: none;
-}
-
-.button:focus {
-  outline: none;
-}
-
-.button:hover {
-  transform: scale(1.1);
+  color:rgb(94 94 94);
 }
 
 .divider {
-  margin: 30px auto 25px;
-  width: 50px;
+  width: 80%;
   border: 0.5px dashed #000;
   opacity: 0.1;
+}
+
+.github-link {
+  height: calc(0.4em + 25px);
+  width: calc(0.4em + 25px);
+}
+
+ul.settings {
+  list-style-type: none;
+}
+
+.settings .setting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  margin-bottom: 0.5em;
+}
+
+.github-link:hover svg {
+  fill: #EE8F00;
+  transition: fill 0.15s ease-in-out;
 }
