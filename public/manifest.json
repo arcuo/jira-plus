@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Jira Plus",
   "version": "0.1.0",
-  "description": "My Chrome Extension",
+  "description": "Extension to improve JIRA experience",
   "icons": {
     "16": "icons/icon_16.png",
     "32": "icons/icon_32.png",
@@ -16,18 +16,13 @@
     "default_title": "Jira Plus",
     "default_popup": "popup.html"
   },
-  "permissions": [
-    "storage"
-  ],
+  "permissions": ["storage"],
   "content_scripts": [
     {
-      "matches": [
-        "<all_urls>"
-      ],
+      "matches": ["https://*.atlassian.net/jira/*"],
       "run_at": "document_idle",
-      "js": [
-        "contentScript.js"
-      ]
+      "js": ["content.js"],
+      "css": ["content.css"]
     }
   ]
 }

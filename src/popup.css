@@ -15,8 +15,9 @@ html {
 }
 
 body {
-  width: 350px;
-  height: 300px;
+  width: fit-content;
+  height: fit-content;
+  padding: 2em;
 }
 
 .app {
@@ -33,6 +34,7 @@ body {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 10px;
+  white-space: nowrap;
 }
 
 .subtitle {

@@ -1,0 +1,16 @@
+.ghx-swimlane-header .ghx-expander.js-expander {
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ghx-swimlane-header {
+  padding: 0 35px !important;
+}
+
+.adg3 .ghx-swimlane-header .ghx-expander .ghx-iconfont {
+  margin: 0 !important;
+  width: 30px;
+  height: 30px;
+}
