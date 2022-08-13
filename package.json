@@ -6,13 +6,17 @@
   "scripts": {
     "watch": "webpack --mode=development --watch --config config/webpack.config.js",
     "build": "webpack --mode=production --config config/webpack.config.js",
-    "format": "prettier --write --ignore-unknown \"{config,public,src}/**/*.{html,css,js,ts,json}\""
+    "format": "prettier --write --ignore-unknown \"{config,public,src}/**/*.{html,css,js,ts,json}\"",
+    "lint": "eslint . --ext .ts"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.193",
     "@types/jquery": "^3.5.14",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
+    "eslint": "^8.21.0",
     "file-loader": "^6.2.0",
     "mini-css-extract-plugin": "^2.6.1",
     "prettier": "^2.7.1",

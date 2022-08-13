@@ -12,7 +12,7 @@ import "./content.css";
 
 // For more information on Content Scripts,
 // See https://developer.chrome.com/extensions/content_scripts
-import $ from 'jquery'; 
+import $ from 'jquery';
 
 // Fetch 
 
@@ -24,6 +24,8 @@ const checkForEpics = () => {
   epics = epics.filter((index, epic) => {
     return $(epic).find('.ghx-swimlane-header.ghx-swimlane-default').length !== 1;
   });
+
+  
   const epicsInfo = epics.map((index, epic) => fetchEpicInfo(epic)).toArray();
 
   // Add buttons
