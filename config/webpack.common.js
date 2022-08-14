@@ -1,7 +1,6 @@
 'use strict';
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const PATHS = require('./paths');
 
@@ -49,6 +48,9 @@ const common = {
       patterns: [
         {
           from: '**/*',
+          globOptions: {
+            ignore: ['**/manifest.json', '**/manifest_firefox.json'],
+          },
           context: 'public',
         },
       ],

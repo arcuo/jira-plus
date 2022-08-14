@@ -49,7 +49,8 @@ const config = (env, argv) =>
       new CopyWebpackPlugin({
         patterns: [
           {
-            from: '**/manifest.json',
+            from: '**/manifest_firefox.json',
+            to: 'manifest.json',
             context: 'public',
           },
         ],

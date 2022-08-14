@@ -1,14 +1,16 @@
 {
   "name": "jira-plus",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Extension to improve JIRA experience",
   "private": true,
   "scripts": {
     "watch": "yarn clean && webpack --mode=development --watch --config config/webpack.config.js",
-    "clean": "rm -rf build",
-    "build": "webpack --mode=production --config config/webpack.config.js",
+    "clean": "rm -rf build && rm -f build.zip",
+    "build": "yarn clean && webpack --mode=production --config config/webpack.config.js && yarn zip",
+    "build:firefox": "yarn clean && webpack --mode=production --config config/webpack.firefox.js && yarn zip",
     "format": "prettier --write --ignore-unknown \"{config,public,src}/**/*.{html,css,js,ts,json}\"",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "zip": "rm -f build.zip && cd build && zip -r ../build.zip * && cd .."
   },
   "devDependencies": {
     "@types/chrome": "^0.0.193",

@@ -10,7 +10,7 @@
     "128": "icons/icon_128.png"
   },
   "background": {
-    "service_worker": "background.js"
+    "page": "background.js"
   },
   "action": {
     "default_title": "Jira Plus",

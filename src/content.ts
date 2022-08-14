@@ -67,7 +67,7 @@ const setEpicLinks = (enabled: boolean) => {
     heading.text('')
 
     const link = document.createElement('a');
-    link.innerText = title;
+    link.textContent = title;
     link.target = "_blank";
     link.href = `/browse/${epicKey}`;
     link.style.color = 'inherit';
