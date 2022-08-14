@@ -1,0 +1,18 @@
+.jira-plus-styling {
+  .ghx-swimlane-header {
+    padding: 0 35px !important;
+
+    .ghx-expander.js-expander {
+      width: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .ghx-iconfont {
+        margin: 0 !important;
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}

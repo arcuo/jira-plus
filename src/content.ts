@@ -1,6 +1,6 @@
 'use strict';
 
-import "./content.css";
+import "./content.scss";
 
 // Content script file will run in the context of web page.
 // With content script you can manipulate the web pages using
@@ -13,10 +13,43 @@ import "./content.css";
 // For more information on Content Scripts,
 // See https://developer.chrome.com/extensions/content_scripts
 import $ from 'jquery';
+import { SettingsStorage } from './storage';
+import { Messages, SettingId } from './types';
 
-// Fetch 
+const settingsStorage = new SettingsStorage();
 
-const checkForEpics = () => {
+/** Storing whether or not the epics setting is enabled. Updated on first call to `setEpicLinks` */
+let epicsSettingEnabled = false;
+
+/** Enable the custom styling feature */
+const enableStyling = (enabled: boolean) => {
+  if (enabled) {
+    $('#jira-frontend').addClass('jira-plus-styling');
+  } else {
+    $('#jira-frontend').removeClass('jira-plus-styling');
+  }
+}
+
+// Detect dom changes for react re-renders
+const observer = new MutationObserver(function (mutations_list) {
+  mutations_list.forEach(function (mutation) {
+    mutation.addedNodes.forEach(function (added_node) {
+      const element = added_node as Element;
+      if (element.classList && element.classList.contains('ghx-swimlane')) {
+        observer.disconnect();
+        setEpicLinks(epicsSettingEnabled);
+      }
+    });
+  });
+});
+
+const startObserve = () => observer.observe(document.querySelector('#jira-frontend') as Node, { subtree: true, childList: true, });
+
+/** Set epic links */
+const setEpicLinks = (enabled: boolean) => {
+  epicsSettingEnabled = enabled;
+  if (!enabled) return;
+
   const board = $('#ghx-work #ghx-pool-column');
   let epics = board.find('.ghx-swimlane')
 
@@ -25,7 +58,6 @@ const checkForEpics = () => {
     return $(epic).find('.ghx-swimlane-header.ghx-swimlane-default').length !== 1;
   });
 
-  
   const epicsInfo = epics.map((index, epic) => fetchEpicInfo(epic)).toArray();
 
   // Add buttons
@@ -44,7 +76,10 @@ const checkForEpics = () => {
 
   })
 
+  startObserve();
+
 }
+
 
 /** Fetch information for the epic */
 const fetchEpicInfo = (epic: HTMLElement) => {
@@ -54,4 +89,32 @@ const fetchEpicInfo = (epic: HTMLElement) => {
   return { title, epicKey, element: epic }
 }
 
-checkForEpics();
+// Epics
+settingsStorage.getSetting<boolean>(SettingId.EPIC_LINKS, setEpicLinks);
+
+// Styling
+settingsStorage.getSetting<boolean>(SettingId.STYLING, enableStyling);
+
+
+// Listen for setting changes
+
+chrome.runtime.onMessage.addListener((request: {
+  message: Messages,
+  settingId: SettingId,
+  value: boolean,
+}, sender, sendResponse) => {
+  if (request.message === Messages.SETTING_CHANGED) {
+    const { settingId, value } = request;
+
+    switch (settingId) {
+      case SettingId.EPIC_LINKS: {
+        setEpicLinks(value);
+        break;
+      }
+      case SettingId.STYLING: {
+        enableStyling(value);
+        break;
+      }
+    }
+  }
+})

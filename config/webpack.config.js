@@ -9,7 +9,7 @@ const PATHS = require('./paths');
 // Merge webpack configuration files
 const config = (env, argv) =>
   merge(common, {
-    mode: "production",
+    mode: 'production',
     entry: {
       popup: PATHS.src + '/popup.ts',
       content: PATHS.src + '/content.ts',
@@ -17,14 +17,26 @@ const config = (env, argv) =>
     },
     output: {
       path: PATHS.build,
-      filename: "[name].js",
-   },
+      filename: '[name].js',
+      publicPath: '',
+    },
     module: {
       rules: [
         {
           test: /\.tsx?$/,
           use: 'ts-loader',
           exclude: /node_modules/,
+        },
+        {
+          test: /\.scss$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: { outputPath: '.', name: '[name].css' },
+            },
+            'sass-loader',
+          ],
         },
       ],
     },
@@ -34,9 +46,9 @@ const config = (env, argv) =>
     },
     plugins: [
       new CopyPlugin({
-         patterns: [{from: ".", to: ".", context: "public"}]
+        patterns: [{ from: '.', to: '.', context: 'public' }],
       }),
-   ],
+    ],
   });
 
 module.exports = config;

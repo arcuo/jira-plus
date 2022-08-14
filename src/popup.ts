@@ -1,7 +1,8 @@
 'use strict';
 
 import $ from 'jquery';
-import './popup.css';
+import './popup.scss';
+import { SettingsStorage } from './storage';
 import { SettingId } from './types';
 
 (function () {
@@ -12,29 +13,20 @@ import { SettingId } from './types';
   // To get storage access, we have to mention it in `permissions` property of manifest.json file
   // More information on Permissions can we found at
   // https://developer.chrome.com/extensions/declare_permissions
-  const settingsStorage = {
-    get: <T>(settingKey: SettingId, cb: (result: T) => void) => {
-      chrome.storage.sync.get([settingKey], (result) => {
-        cb(result[settingKey] as T);
-      });
-    },
-    set: <T>(settingKey: SettingId, value: T, onSuccess?: (value: T) => void) => {
-      chrome.storage.sync.set(
-        {
-          [settingKey]: value,
-        },
-        () => onSuccess && onSuccess(value)
-      );
-    },
-  };
 
-  const setSettingInput = (settingId: SettingId) => {
+  let epicSettingChanged = false;
 
-    settingsStorage.get<boolean>(settingId, (result) => {
+  const settingsStorage = new SettingsStorage();
+
+  const handleCheckbox = (settingId: SettingId, callback?: (value: boolean) => void) => {
+
+    settingsStorage.getSetting<boolean>(settingId, (result) => {
       const settingInput = $<HTMLInputElement>(`#${settingId} input`);
-      settingInput.prop('checked', result);
+      if (typeof result === 'boolean') {
+        settingInput.prop('checked', result);
+      }
       settingInput.on('change', (e) => {
-        settingsStorage.set(settingId, (e.target as HTMLInputElement).checked);
+        settingsStorage.setSetting<boolean>(settingId, (e.target as HTMLInputElement).checked, callback);
       })
     });
 
@@ -42,5 +34,35 @@ import { SettingId } from './types';
   }
 
   // Epics links 
-  setSettingInput(SettingId.EPIC_LINKS);
+  handleCheckbox(SettingId.EPIC_LINKS, () => {
+    epicSettingChanged = !epicSettingChanged;
+    if (epicSettingChanged) {
+      $(`div.requires-reload`)[0].style.display = 'flex';
+    } else {
+      $(`div.requires-reload`)[0].style.display = 'none';
+    }
+  });
+
+  // Styling
+  handleCheckbox(SettingId.STYLING);
+
+  // Reload page handling
+  const reloadButton = $('#reload-button');
+  reloadButton.on('click', () => {
+    chrome.tabs.query({ url: '*://*.atlassian.net/*' }, (tabs) => {
+      if (tabs.length > 0 && tabs[0].id) {
+        const tabId = tabs[0].id;
+        chrome.tabs.reload(tabId);
+        reloadButton.addClass('loading');
+        chrome.tabs.onUpdated.addListener((id, changeInfo, tab) => {
+          if (id === tabId && changeInfo.status === 'complete') {
+            epicSettingChanged = false;
+            $(`div.requires-reload`)[0].style.display = 'none';
+            reloadButton.removeClass('loading');
+          }
+        })
+      }
+    })
+  });
+
 })();
