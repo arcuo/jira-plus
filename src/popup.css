@@ -27,6 +27,7 @@ body {
   justify-content: center;
   flex-direction: column;
   text-align: center;
+  min-width: 10rem;
   padding: 2em 2em 1em 2em;
 }
 
@@ -63,6 +64,11 @@ ul.settings {
   justify-content: space-between;
   gap: 1em;
   margin-bottom: 0.5em;
+}
+
+.settings .setting .setting-name {
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .github-link:hover svg {

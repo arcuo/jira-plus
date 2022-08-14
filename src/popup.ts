@@ -1,6 +1,8 @@
 'use strict';
 
+import $ from 'jquery';
 import './popup.css';
+import { SettingId } from './types';
 
 (function () {
   // We will make use of Storage API to get and store `count` value
@@ -11,20 +13,34 @@ import './popup.css';
   // More information on Permissions can we found at
   // https://developer.chrome.com/extensions/declare_permissions
   const settingsStorage = {
-    get: (cb: any) => {
-      chrome.storage.sync.get(['jira-plus:epic-links'], (result) => {
-        cb(result['jira-plus:epic-links']);
+    get: <T>(settingKey: SettingId, cb: (result: T) => void) => {
+      chrome.storage.sync.get([settingKey], (result) => {
+        cb(result[settingKey] as T);
       });
     },
-    set: (value: any, cb: any) => {
+    set: <T>(settingKey: SettingId, value: T, onSuccess?: (value: T) => void) => {
       chrome.storage.sync.set(
         {
-          "jira-plus:epic-links": value,
+          [settingKey]: value,
         },
-        () => {
-          cb();
-        }
+        () => onSuccess && onSuccess(value)
       );
     },
   };
+
+  const setSettingInput = (settingId: SettingId) => {
+
+    settingsStorage.get<boolean>(settingId, (result) => {
+      const settingInput = $<HTMLInputElement>(`#${settingId} input`);
+      settingInput.prop('checked', result);
+      settingInput.on('change', (e) => {
+        settingsStorage.set(settingId, (e.target as HTMLInputElement).checked);
+      })
+    });
+
+
+  }
+
+  // Epics links 
+  setSettingInput(SettingId.EPIC_LINKS);
 })();
