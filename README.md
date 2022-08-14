@@ -36,6 +36,10 @@ You can enable the settings from the popup in the extension.
 
 <img src="./popup.png">
 
+## Install
+
+Links for firefox and chrome coming soon
+
 ## Manual install (Firefox)
 
 ### **NOTE: Not working currently**
