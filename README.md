@@ -7,6 +7,7 @@ Quality of life changes to JIRA
 - **Epic links**: Adds links to the epic titles in the board.
 - **Styling**: Adds some styling to the JIRA board
   - Spacing to the expand button for epics
+  - **Coming soon**: Enable/disable specific styling changes
 
 ## Manual install (Chrome)
 
