@@ -102,6 +102,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@stencil/core@^2.17.3":
+  version "2.17.3"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.17.3.tgz#b86cb76eb57231ce1f04014c2a51d1690c64325d"
+  integrity sha512-qw2DZzOpyaltLLEfYRTj3n+XbvRtkmv4QQimYDJubC6jMY0NXK9r6H2+VyszdbbVmvK1D9GqZtyvY0NmOrztsg==
+
 "@types/chrome@^0.0.193":
   version "0.0.193"
   resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.193.tgz#cd0dc5033f27a243d228aebe566c3ec19ef17e36"
@@ -1138,6 +1143,12 @@ jest-worker@^27.4.5:
     "@types/node" "*"
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
+
+"jira-plus-webcomponents@file:src/jira-plus-webcomponents/jira-plus-webcomponents-0.0.1.tgz":
+  version "0.0.1"
+  resolved "file:src/jira-plus-webcomponents/jira-plus-webcomponents-0.0.1.tgz#02128e25aab684ebf5fb98579ff6251cfcfa3f26"
+  dependencies:
+    "@stencil/core" "^2.17.3"
 
 jquery@^3.6.0:
   version "3.6.0"

@@ -1,12 +1,12 @@
 {
   "name": "jira-plus-webcomponents",
   "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "description": "Web components for Jira plus",
   "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
+  "module": "build/index.js",
   "es2015": "dist/esm/index.mjs",
   "es2017": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
+  "types": "build/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/jira-plus-webcomponents/jira-plus-webcomponents.esm.js",
@@ -19,7 +19,7 @@
     "loader/"
   ],
   "scripts": {
-    "build": "stencil build --docs",
+    "build": "stencil build --docs && npm pack .",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
@@ -29,6 +29,7 @@
     "@stencil/core": "^2.17.3"
   },
   "devDependencies": {
+    "@stencil/sass": "^1.5.2",
     "@types/jest": "^27.0.3",
     "jest": "^27.4.5",
     "jest-cli": "^27.4.5",

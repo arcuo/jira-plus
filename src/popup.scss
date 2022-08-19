@@ -154,8 +154,8 @@ body {
     flex-direction: column;
     gap: 0.5em;
 
-    .no-jira-tabs {
-      display: none;
+    &.no-tabs::before {
+      content: "No JIRA tabs found";
       color: rgb(94 94 94);
       border: 1px solid rgb(94 94 94);
       border-style: dashed;
@@ -163,10 +163,6 @@ body {
       border-radius: 0.275rem;
       font-size: 0.7rem;
       font-style: italic;
-    }
-
-    &.no-tabs .no-jira-tabs {
-      display: block;
     }
   }
 

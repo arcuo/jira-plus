@@ -54,6 +54,15 @@ const config = (env, argv) =>
           },
         ],
       }),
+      // If added, copy webcomponent assets o `build` folder
+      // new CopyWebpackPlugin({
+      //   patterns: [
+      //     {
+      //       from: path.resolve(__dirname, 'node_modules/jira-plus-webcomponents/dist/jira-plus-webcomponents/assets'),
+      //       to: path.resolve(__dirname, 'build/assets'),
+      //     },
+      //   ],
+      // }),
     ],
   });
 

@@ -6,56 +6,73 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
+    interface CopyButton {
+        "copyText": string;
+        "text": string;
+    }
+    interface JiraTab {
         /**
-          * The first name
+          * Title of the tab, i.e. the title of the jira issue
          */
-        "first": string;
+        "issueTitle": string;
         /**
-          * The last name
+          * JIRA url
          */
-        "last": string;
+        "jiraBaseUrl": string;
         /**
-          * The middle name
+          * jira issue key
          */
-        "middle": string;
+        "jiraIssueKey": string;
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLCopyButtonElement extends Components.CopyButton, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLCopyButtonElement: {
+        prototype: HTMLCopyButtonElement;
+        new (): HTMLCopyButtonElement;
+    };
+    interface HTMLJiraTabElement extends Components.JiraTab, HTMLStencilElement {
+    }
+    var HTMLJiraTabElement: {
+        prototype: HTMLJiraTabElement;
+        new (): HTMLJiraTabElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "copy-button": HTMLCopyButtonElement;
+        "jira-tab": HTMLJiraTabElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
+    interface CopyButton {
+        "copyText"?: string;
+        "text"?: string;
+    }
+    interface JiraTab {
         /**
-          * The first name
+          * Title of the tab, i.e. the title of the jira issue
          */
-        "first"?: string;
+        "issueTitle"?: string;
         /**
-          * The last name
+          * JIRA url
          */
-        "last"?: string;
+        "jiraBaseUrl"?: string;
         /**
-          * The middle name
+          * jira issue key
          */
-        "middle"?: string;
+        "jiraIssueKey"?: string;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "copy-button": CopyButton;
+        "jira-tab": JiraTab;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "copy-button": LocalJSX.CopyButton & JSXBase.HTMLAttributes<HTMLCopyButtonElement>;
+            "jira-tab": LocalJSX.JiraTab & JSXBase.HTMLAttributes<HTMLJiraTabElement>;
         }
     }
 }

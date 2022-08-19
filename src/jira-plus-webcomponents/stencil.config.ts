@@ -9,6 +9,9 @@ export const config: Config = {
     },
     {
       type: 'dist-custom-elements',
+      generateTypeDeclarations: true,
+      autoDefineCustomElements: true,
+      dir: 'build',
     },
     {
       type: 'docs-readme',

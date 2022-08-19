@@ -5,6 +5,10 @@ import './popup.scss';
 import { SettingsStorage } from './storage';
 import { SettingId } from './types';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { defineCustomElement } from "jira-plus-webcomponents/dist/components/my-component";
+defineCustomElement();
+
 (function () {
   // We will make use of Storage API to get and store `count` value
   // More information on Storage API can we found at
@@ -84,8 +88,19 @@ import { SettingId } from './types';
 
   const setJiraTabs = () => {
     const jiraTabsElement = $('#copy-from-jira .jira-tabs');
+    jiraTabsElement.empty();
     chrome.tabs.query({ url: '*://*.atlassian.net/browse/*' }, (tabs) => {
-      jiraTabsElement.addClass('no-tabs');
+      if (tabs.length === 0) {
+        jiraTabsElement.addClass('no-tabs');
+        return;
+      }
+
+      tabs.forEach(tab => {
+        const { title } = tab;
+        const component = document.createElement('my-component');
+        component.setAttribute('first', title ?? "");
+        jiraTabsElement.append(component);
+      })
     })
   }
 
