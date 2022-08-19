@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property      | Attribute       | Description                                        | Type     | Default     |
-| ------------- | --------------- | -------------------------------------------------- | -------- | ----------- |
-| `jiraBaseUrl` | `jira-base-url` | JIRA url                                           | `string` | `undefined` |
-| `jiraKey`     | `jira-key`      | jira issue key                                     | `string` | `undefined` |
-| `title`       | `title`         | Title of the tab, i.e. the title of the jira issue | `string` | `undefined` |
+| Property       | Attribute        | Description                                        | Type                 | Default     |
+| -------------- | ---------------- | -------------------------------------------------- | -------------------- | ----------- |
+| `actions`      | `actions`        |                                                    | `Action[] \| string` | `undefined` |
+| `issueTitle`   | `issue-title`    | Title of the tab, i.e. the title of the jira issue | `string`             | `undefined` |
+| `jiraBaseUrl`  | `jira-base-url`  | JIRA url                                           | `string`             | `undefined` |
+| `jiraIssueKey` | `jira-issue-key` | jira issue key                                     | `string`             | `undefined` |
 
 
 ## Dependencies

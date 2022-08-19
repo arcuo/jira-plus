@@ -6,7 +6,7 @@ import { SettingsStorage } from './storage';
 import { SettingId } from './types';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { defineCustomElement } from "jira-plus-webcomponents/dist/components/my-component";
+import {  } from "jira-plus-webcomponents";
 defineCustomElement();
 
 (function () {

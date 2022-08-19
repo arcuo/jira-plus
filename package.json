@@ -11,7 +11,7 @@
     "format": "prettier --write --ignore-unknown \"{config,public,src}/**/*.{html,css,js,ts,json}\"",
     "lint": "eslint . --ext .ts",
     "zip": "rm -f build.zip && cd build && zip -r ../build.zip * && cd ..",
-    "build:webcomponents": "cd src/jira-plus-webcomponents && yarn build && cd .. && yarn install --force"
+    "build:webcomponents": "cd src/jira-plus-webcomponents && rm -r jira-plus-webcomponents-*.tgz && yarn build && cd .. && yarn install --force"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.193",
@@ -34,7 +34,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "jira-plus-webcomponents": "file:src/jira-plus-webcomponents/jira-plus-webcomponents-0.0.1.tgz",
+    "jira-plus-webcomponents": "file:src/jira-plus-webcomponents/jira-plus-webcomponents-0.0.2.tgz",
     "jquery": "^3.6.0"
   }
 }

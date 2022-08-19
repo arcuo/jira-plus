@@ -1,30 +1,31 @@
-import { Component, h, Host, Prop, State } from '@stencil/core';
+import { Component, h, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'copy-button',
   styleUrl: 'copy-button.scss',
+  scoped: true,
 })
 export class CopyButton {
-  @State() copied = false;
+  @State() showStatus: boolean | undefined;
   @Prop() text: string;
   @Prop() copyText: string;
 
   copyToClipboard = () => {
     navigator.clipboard.writeText(this.copyText);
-    this.copied = true;
+    this.showStatus = true;
     setTimeout(() => {
-      this.copied = false;
-    }, 2 * 1000);
+      this.showStatus = false;
+    }, 3 * 1000);
   };
 
   render() {
     return (
-      <Host>
-        <button class={this.copied ? 'copied' : ''} onClick={this.copyToClipboard}>
-          {this.text}
-        </button>
-        {this.copied && <span class="copied-indicator">Copied</span>}
-      </Host>
+      <button class={this.showStatus === true ? 'copied' : ''} onClick={this.copyToClipboard}>
+        {this.text}
+
+        {/* Copied indicator popup */}
+        <div class={'copied-indicator' + (this.showStatus === true ? ' visible' : '') + (this.showStatus === false ? ' hidden' : '')}>Copied</div>
+      </button>
     );
   }
 }

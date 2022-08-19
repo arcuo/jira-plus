@@ -1,3 +1,24 @@
-:host {
-  display: block;
+.jira-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+
+  .issue-title {
+    font-family: inherit;
+    background: #fff;
+    -webkit-box-shadow: 0 1px 2px 0 rgb(34 36 38 / 15%);
+    box-shadow: 0 1px 2px 0 rgb(34 36 38 / 15%);
+    padding: 0.3em;
+    border-radius: 0.28571429rem;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+  }
 }

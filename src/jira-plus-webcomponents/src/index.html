@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>Stencil Component Starter</title>
 
-    <script type="module" src="/build/jira-plus-webcomponents.esm.js"></script>
-    <script nomodule src="/build/jira-plus-webcomponents.js"></script>
-  </head>
-  <body>
-    <copy-button text="Stencil" copy-text="'Don't call me a framework' JS"></copy-button>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+  <title>Stencil Component Starter</title>
+
+  <script type="module" src="/build/jira-plus-webcomponents.esm.js"></script>
+  <script nomodule src="/build/jira-plus-webcomponents.js"></script>
+</head>
+
+<body>
+  <div style="max-width: 20rem;">
+    <jira-tab style="width: 100%" issue-title="ART 04 - Marking Tool M9 - FLOWmulti section support"
+      jira-issue-key="FEAT-4501" jira-base-url="https://uniwise.atlassian.net/"
+      actions='[{ "name": "lars", "content": "his name" }]'></jira-tab>
+  </div>
+</body>
+
 </html>

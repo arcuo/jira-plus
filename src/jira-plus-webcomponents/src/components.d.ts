@@ -5,12 +5,14 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { Action } from "./components/jira-tab/jira-tab";
 export namespace Components {
     interface CopyButton {
         "copyText": string;
         "text": string;
     }
     interface JiraTab {
+        "actions"?: string | Action[];
         /**
           * Title of the tab, i.e. the title of the jira issue
          */
@@ -49,6 +51,7 @@ declare namespace LocalJSX {
         "text"?: string;
     }
     interface JiraTab {
+        "actions"?: string | Action[];
         /**
           * Title of the tab, i.e. the title of the jira issue
          */
