@@ -19,6 +19,8 @@ body {
   height: fit-content;
 }
 
+// App styling
+
 .app {
   height: 100%;
   display: flex;
@@ -27,7 +29,7 @@ body {
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  min-width: 10rem;
+  min-width: 20rem;
   padding: 2em 2em 1em 2em;
 
   .title {
@@ -42,135 +44,173 @@ body {
     color: rgb(94 94 94);
   }
 
+  .section {
+    width: 100%;
+
+    h3,
+    h4 {
+      margin-bottom: 1rem;
+      font-weight: normal;
+      white-space: nowrap;
+    }
+  }
+
   .divider {
     width: 80%;
     border: 0.5px dashed #000;
     opacity: 0.1;
   }
 
-  .github-link {
-    height: calc(0.4em + 25px);
-    width: calc(0.4em + 25px);
+  button {
+    background-color: #fff;
+    border: 1px solid #d5d9d9;
+    border-radius: 0.275rem;
+    box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
+    box-sizing: border-box;
+    color: #0f1111;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Amazon Ember', sans-serif;
+    font-size: 13px;
+    line-height: 29px;
+    padding: 0 10px 0 11px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    width: 100px;
 
-    &:hover svg {
-      fill: #ee8f00;
-      transition: fill 0.15s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: #f7fafa;
+    }
+
+    &:focus {
+      border-color: #008296;
+      box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
+      outline: 0;
+    }
+
+    .spinner {
+      display: none;
+      animation: rotate 2s linear infinite;
+      z-index: 2;
+      width: 20px;
+      height: 20px;
+      margin: 4.5px 0;
+
+      & .path {
+        stroke: hsl(210, 70, 75);
+        stroke-linecap: round;
+        animation: dash 1.5s ease-in-out infinite;
+      }
+    }
+
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes dash {
+      0% {
+        stroke-dasharray: 1, 150;
+        stroke-dashoffset: 0;
+      }
+      50% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -35;
+      }
+      100% {
+        stroke-dasharray: 90, 150;
+        stroke-dashoffset: -124;
+      }
+    }
+
+    &.loading {
+      .spinner {
+        display: block;
+      }
+
+      .text {
+        display: none;
+      }
     }
   }
 
+  // JIRA copy content
+
+  ul.jira-tabs {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+
+    .no-jira-tabs {
+      color: rgb(94 94 94);
+      border: 1px solid rgb(94 94 94);
+      border-style: dashed;
+      padding: 0.5em 1em;
+      border-radius: 0.275rem;
+      font-size: 0.7rem;
+      font-style: italic;
+    }
+  }
+
+  // Settings
+
+  ul.settings {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    .setting {
+      display: flex;
+      flex-direction: column;
+
+      & > div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1em;
+        margin-bottom: 0.5em;
+      }
+
+      .setting-name {
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .setting-description {
+        font-size: 0.8em;
+        text-align: left;
+      }
+    }
+  }
+
+  // Reload required
   .requires-reload {
     color: #437dfa;
     font-size: 0.6rem;
     display: flex;
     flex-direction: column;
     gap: 0.5em;
+    justify-content: center;
+    align-items: center;
 
-    button {
-      background-color: #fff;
-      border: 1px solid #d5d9d9;
-      border-radius: 8px;
-      box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
-      box-sizing: border-box;
-      color: #0f1111;
-      cursor: pointer;
-      display: inline-block;
-      font-family: 'Amazon Ember', sans-serif;
-      font-size: 13px;
-      line-height: 29px;
-      padding: 0 10px 0 11px;
-      position: relative;
-      text-align: center;
-      text-decoration: none;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: manipulation;
-      vertical-align: middle;
-      width: 100px;
-
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      &:hover {
-        background-color: #f7fafa;
-      }
-
-      &:focus {
-        border-color: #008296;
-        box-shadow: rgba(213, 217, 217, 0.5) 0 2px 5px 0;
-        outline: 0;
-      }
-
-      .text {
-      }
-
-      .spinner {
-        display: none;
-        animation: rotate 2s linear infinite;
-        z-index: 2;
-        width: 20px;
-        height: 20px;
-        margin: 4.5px 0;
-
-        & .path {
-          stroke: hsl(210, 70, 75);
-          stroke-linecap: round;
-          animation: dash 1.5s ease-in-out infinite;
-        }
-      }
-
-      @keyframes rotate {
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      @keyframes dash {
-        0% {
-          stroke-dasharray: 1, 150;
-          stroke-dashoffset: 0;
-        }
-        50% {
-          stroke-dasharray: 90, 150;
-          stroke-dashoffset: -35;
-        }
-        100% {
-          stroke-dasharray: 90, 150;
-          stroke-dashoffset: -124;
-        }
-      }
-
-      &.loading {
-        .spinner {
-          display: block;
-        }
-
-        .text {
-          display: none;
-        }
-      }
+    .divider {
+      margin-top: 1em;
     }
   }
 
-  ul.settings {
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-
-    .setting {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1em;
-      margin-bottom: 0.5em;
-
-      .setting-name {
-        font-weight: 600;
-        white-space: nowrap;
-      }
-    }
-  }
+  // Footer
 
   .footer {
     display: flex;
@@ -182,6 +222,16 @@ body {
       font-size: 0.6rem;
       white-space: nowrap;
       color: rgb(94 94 94);
+    }
+
+    .github-link {
+      height: calc(0.4em + 25px);
+      width: calc(0.4em + 25px);
+
+      &:hover svg {
+        fill: #ee8f00;
+        transition: fill 0.15s ease-in-out;
+      }
     }
   }
 }

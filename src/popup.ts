@@ -20,28 +20,44 @@ import { SettingId } from './types';
 
   const handleCheckbox = (settingId: SettingId, callback?: (value: boolean) => void) => {
 
-    settingsStorage.getSetting<boolean>(settingId, (result) => {
+    settingsStorage.getSetting<boolean | undefined>(settingId, (result) => {
       const settingInput = $<HTMLInputElement>(`#${settingId} input`);
+      if (result === undefined) {
+        settingInput.prop('checked', true);
+        settingsStorage.setSetting(settingId, true);
+      }
+
       if (typeof result === 'boolean') {
         settingInput.prop('checked', result);
       }
+
       settingInput.on('change', (e) => {
         settingsStorage.setSetting<boolean>(settingId, (e.target as HTMLInputElement).checked, callback);
       })
     });
 
-
   }
 
-  // Epics links 
-  handleCheckbox(SettingId.EPIC_LINKS, () => {
-    epicSettingChanged = !epicSettingChanged;
-    if (epicSettingChanged) {
+  // Requires reload button handling
+  const showReloadButton = (reloadRequired: boolean) => {
+    if (reloadRequired) {
       $(`div.requires-reload`)[0].style.display = 'flex';
     } else {
       $(`div.requires-reload`)[0].style.display = 'none';
     }
+  }
+
+
+
+
+  // Epics links 
+  handleCheckbox(SettingId.EPIC_LINKS, () => {
+    epicSettingChanged = !epicSettingChanged;
+    showReloadButton(epicSettingChanged);
   });
+
+  // Github markdown
+  handleCheckbox(SettingId.GITHUB_MARKDOWN);
 
   // Styling
   handleCheckbox(SettingId.STYLING);
@@ -57,7 +73,7 @@ import { SettingId } from './types';
         chrome.tabs.onUpdated.addListener((id, changeInfo, tab) => {
           if (id === tabId && changeInfo.status === 'complete') {
             epicSettingChanged = false;
-            $(`div.requires-reload`)[0].style.display = 'none';
+            showReloadButton(false);
             reloadButton.removeClass('loading');
           }
         })

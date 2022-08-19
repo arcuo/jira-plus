@@ -18,33 +18,65 @@
 
     <div class="divider"></div>
 
+    <!-- Copy JIRA link for Github -->
+
+    <div class="section" id="copy-from-jira">
+      <!-- JIRA link -->
+      <h3 class="subtitle">Export JIRA content</h3>
+
+      <ul class="jira-tabs">
+        <li class="no-jira-tabs">No JIRA tabs open</li>
+      </ul>
+
+    </div>
+
+    <div class="divider"></div>
+
     <!-- Settings -->
-    <ul class="settings">
-      <li class="setting" id="jira_plus_epic_links">
-        <span class="setting-name">Epic links</span>
-        <input type="checkbox">
-      </li>
-      <li class="setting" id="jira_plus_styling">
-        <span class="setting-name">Styling</span>
-        <input type="checkbox">
-      </li>
-    </ul>
+    <div class="section" id="settings">
+      <h3 class="subtitle">Settings</h3>
+      <ul class="settings">
+        <li class="setting" id="jira_plus_epic_links">
+          <div>
+            <span class="setting-name">Epic links</span>
+            <input type="checkbox">
+          </div>
+          <span class="setting-description">Add epic links to rows for the boards</span>
+        </li>
+        <li class="setting" id="jira_plus_copy_as_markdown">
+          <div>
+            <span class="setting-name">Github markdown</span>
+            <input type="checkbox">
+          </div>
+          <span class="setting-description">When copying content from JIRA, copy as markdown for Github or just the
+            content</span>
+        </li>
+        <li class="setting" id="jira_plus_styling">
+          <div>
+            <span class="setting-name">Styling</span>
+            <input type="checkbox">
+          </div>
+          <span class="setting-description">Enable some improving styling to JIRA</span>
+        </li>
+      </ul>
+    </div>
 
+    <div class="divider"></div>
 
-    <div class="requires-reload" style="display: none;">
+    <!-- Reload required button -->
+    <div class="section requires-reload" style="display: none;">
       <span>
         Page reload required
       </span>
       <button id="reload-button">
-        <span class="text">Reload</span> 
+        <span class="text">Reload</span>
         <svg class="spinner" viewBox="0 0 50 50">
-        <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
-      </svg>
-    </button>
-      
-    </div>
+          <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+        </svg>
+      </button>
 
-    <div class="divider"></div>
+      <div class="divider"></div>
+    </div>
 
     <div class="footer">
       <a href="https://github.com/arcuo/jira-plus" target="_blank">
