@@ -47,9 +47,6 @@ import { SettingId } from './types';
     }
   }
 
-
-
-
   // Epics links 
   handleCheckbox(SettingId.EPIC_LINKS, () => {
     epicSettingChanged = !epicSettingChanged;
@@ -80,5 +77,20 @@ import { SettingId } from './types';
       }
     })
   });
+
+  // Export JIRA content handling
+
+  // Get JIRA tabs for features
+
+  const setJiraTabs = () => {
+    const jiraTabsElement = $('#copy-from-jira .jira-tabs');
+    chrome.tabs.query({ url: '*://*.atlassian.net/browse/*' }, (tabs) => {
+      jiraTabsElement.addClass('no-tabs');
+    })
+  }
+
+  setJiraTabs();
+
+  chrome.tabs.onUpdated.addListener(() => setJiraTabs());
 
 })();

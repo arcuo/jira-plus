@@ -97,42 +97,6 @@ body {
       outline: 0;
     }
 
-    .spinner {
-      display: none;
-      animation: rotate 2s linear infinite;
-      z-index: 2;
-      width: 20px;
-      height: 20px;
-      margin: 4.5px 0;
-
-      & .path {
-        stroke: hsl(210, 70, 75);
-        stroke-linecap: round;
-        animation: dash 1.5s ease-in-out infinite;
-      }
-    }
-
-    @keyframes rotate {
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes dash {
-      0% {
-        stroke-dasharray: 1, 150;
-        stroke-dashoffset: 0;
-      }
-      50% {
-        stroke-dasharray: 90, 150;
-        stroke-dashoffset: -35;
-      }
-      100% {
-        stroke-dasharray: 90, 150;
-        stroke-dashoffset: -124;
-      }
-    }
-
     &.loading {
       .spinner {
         display: block;
@@ -141,6 +105,44 @@ body {
       .text {
         display: none;
       }
+    }
+  }
+
+  // Spinner
+
+  .spinner {
+    display: none;
+    animation: rotate 2s linear infinite;
+    z-index: 2;
+    width: 20px;
+    height: 20px;
+    margin: 4.5px 0;
+
+    & .path {
+      stroke: hsl(210, 70, 75);
+      stroke-linecap: round;
+      animation: dash 1.5s ease-in-out infinite;
+    }
+  }
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
     }
   }
 
@@ -153,6 +155,7 @@ body {
     gap: 0.5em;
 
     .no-jira-tabs {
+      display: none;
       color: rgb(94 94 94);
       border: 1px solid rgb(94 94 94);
       border-style: dashed;
@@ -160,6 +163,10 @@ body {
       border-radius: 0.275rem;
       font-size: 0.7rem;
       font-style: italic;
+    }
+
+    &.no-tabs .no-jira-tabs {
+      display: block;
     }
   }
 
