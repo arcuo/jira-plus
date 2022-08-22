@@ -8,12 +8,13 @@ export const config: Config = {
     {
       type: 'dist',
       esmLoaderPath: '../loader',
+      dir: 'build/dist',
     },
     {
       type: 'dist-custom-elements',
       generateTypeDeclarations: true,
       autoDefineCustomElements: true,
-      dir: 'build',
+      dir: 'dist',
     },
     {
       type: 'docs-readme',

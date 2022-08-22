@@ -6,7 +6,8 @@
   "scripts": {
     "watch": "yarn clean && webpack --mode=development --watch --config config/webpack.config.js",
     "clean": "rm -rf build && rm -f build.zip",
-    "build": "yarn clean && build:webcomponents && webpack --mode=production --config config/webpack.config.js && yarn zip",
+    "build": "yarn clean && webpack --mode=production --config config/webpack.config.js && yarn zip",
+    "build:all": "yarn clean && yarn build:webcomponents && webpack --mode=production --config config/webpack.config.js && yarn zip",
     "build:firefox": "yarn clean && build:webcomponents && webpack --mode=production --config config/webpack.firefox.js && yarn zip",
     "format": "prettier --write --ignore-unknown \"{config,public,src}/**/*.{html,css,js,ts,json}\"",
     "lint": "eslint . --ext .ts",
@@ -34,7 +35,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "jira-plus-webcomponents": "file:src/jira-plus-webcomponents/jira-plus-webcomponents-0.0.2.tgz",
+    "jira-plus-webcomponents": "file:src/jira-plus-webcomponents/jira-plus-webcomponents-0.0.4.tgz",
     "jquery": "^3.6.0"
   }
 }

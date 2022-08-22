@@ -1,22 +1,21 @@
 {
   "name": "jira-plus-webcomponents",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Web components for Jira plus",
-  "main": "dist/index.cjs.js",
-  "module": "build/index.js",
-  "es2015": "dist/esm/index.mjs",
-  "es2017": "dist/esm/index.mjs",
-  "types": "build/index.d.ts",
-  "collection": "dist/collection/collection-manifest.json",
-  "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/jira-plus-webcomponents/jira-plus-webcomponents.esm.js",
+  "main": "build/index.cjs.js",
+  "module": "dist/index.js",
+  "es2015": "build/esm/index.mjs",
+  "es2017": "build/esm/index.mjs",
+  "types": "dist/index.d.ts",
+  "collection": "build/collection/collection-manifest.json",
+  "collection:main": "build/collection/index.js",
+  "unpkg": "build/jira-plus-webcomponents/jira-plus-webcomponents.esm.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/ionic-team/stencil-component-starter.git"
   },
   "files": [
-    "dist/",
-    "loader/"
+    "dist"
   ],
   "scripts": {
     "build": "stencil build --docs && npm pack .",

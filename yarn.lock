@@ -1144,9 +1144,9 @@ jest-worker@^27.4.5:
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
 
-"jira-plus-webcomponents@file:src/jira-plus-webcomponents/jira-plus-webcomponents-0.0.2.tgz":
-  version "0.0.2"
-  resolved "file:src/jira-plus-webcomponents/jira-plus-webcomponents-0.0.2.tgz#34745e154cb79db0688f82836ce57a8b02e9f9cb"
+"jira-plus-webcomponents@file:src/jira-plus-webcomponents/jira-plus-webcomponents-0.0.4.tgz":
+  version "0.0.4"
+  resolved "file:src/jira-plus-webcomponents/jira-plus-webcomponents-0.0.4.tgz#fa791b48cac889318805a693d5f13bb75bd3d110"
   dependencies:
     "@stencil/core" "^2.17.3"
 
