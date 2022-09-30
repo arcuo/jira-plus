@@ -45,11 +45,7 @@ const observer = new MutationObserver(function (mutations_list) {
 
 const startObserve = () => observer.observe(document.querySelector('#jira-frontend') as Node, { subtree: true, childList: true, });
 
-/** Set epic links */
-const setEpicLinks = (enabled: boolean) => {
-  epicsSettingEnabled = enabled;
-  if (!enabled) return;
-
+const getEpics = () => {
   const board = $('#ghx-work #ghx-pool-column');
   let epics = board.find('.ghx-swimlane')
 
@@ -57,6 +53,25 @@ const setEpicLinks = (enabled: boolean) => {
   epics = epics.filter((index, epic) => {
     return $(epic).find('.ghx-swimlane-header.ghx-swimlane-default').length !== 1;
   });
+
+  return epics
+}
+
+const getBoardId = () => {
+  const breadcrumbs = $('[data-testid="rapidboard-breadcrumbs"]');
+  const lastBreadCrumb = breadcrumbs.find('li:last-child');
+  const boardUrl = lastBreadCrumb.find('a').attr('href');
+  const boardId = boardUrl?.split('/').pop();
+  return boardId;
+
+}
+
+/** Set epic links */
+const setEpicLinks = (enabled: boolean) => {
+  epicsSettingEnabled = enabled;
+  if (!enabled) return;
+
+  const epics = getEpics();
 
   const epicsInfo = epics.map((index, epic) => fetchEpicInfo(epic)).toArray();
 
@@ -108,6 +123,7 @@ chrome.runtime.onMessage.addListener((request: {
 
     switch (settingId) {
       case SettingId.EPIC_LINKS: {
+        console.log('value:', value);
         setEpicLinks(value);
         break;
       }
