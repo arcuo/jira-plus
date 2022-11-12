@@ -1,13 +1,17 @@
 import { SettingId } from './types';
 
 export class SettingsStorage {
-  getSetting = <T>(settingKey: SettingId, cb: (result: T) => void) => {
+  getSetting = <T>(settingKey: SettingId, cb?: (result: T) => void) => {
     chrome.storage.sync.get([settingKey], (result) => {
-      cb(result[settingKey] as T);
+      cb && cb(result[settingKey] as T);
     });
-  }
+  };
 
-  setSetting = <T>(settingKey: SettingId, value: T, onSuccess?: (value: T) => void) => {
+  setSetting = <T>(
+    settingKey: SettingId,
+    value: T,
+    onSuccess?: (value: T) => void
+  ) => {
     console.log('value:', value);
 
     chrome.storage.sync.set(
@@ -27,8 +31,8 @@ export class SettingsStorage {
           });
         });
 
-        onSuccess && onSuccess(value)
+        onSuccess && onSuccess(value);
       }
     );
-  }
+  };
 }

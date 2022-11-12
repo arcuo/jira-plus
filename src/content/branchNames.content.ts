@@ -1,9 +1,15 @@
 'use strict';
 
+import { settingsStorage } from '../settings';
+import { SettingId } from '../types';
+
 // Content script file will run in the context of web page.
 
 const portalObserver = new MutationObserver(function () {
-  detectCreateBranchDropdownInput();
+  settingsStorage.getSetting(SettingId.BRANCHNAMES, (enabled) => {
+    if (!enabled) return;
+    detectCreateBranchDropdownInput();
+  });
 });
 
 /** Observer that finds the portalContainer */

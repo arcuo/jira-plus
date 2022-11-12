@@ -46,6 +46,9 @@ import { SettingId } from './types';
   // Styling
   handleCheckbox(SettingId.STYLING);
 
+  // Branch names
+  handleCheckbox(SettingId.BRANCHNAMES);
+
   // Reload page handling
   const reloadButton = $('#reload-button');
   reloadButton.on('click', () => {

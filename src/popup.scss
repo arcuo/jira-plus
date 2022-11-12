@@ -6,6 +6,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 /* normalize css ends here */
 
 html {
@@ -101,8 +102,7 @@ body {
         outline: 0;
       }
 
-      .text {
-      }
+      .text {}
 
       .spinner {
         display: none;
@@ -130,10 +130,12 @@ body {
           stroke-dasharray: 1, 150;
           stroke-dashoffset: 0;
         }
+
         50% {
           stroke-dasharray: 90, 150;
           stroke-dashoffset: -35;
         }
+
         100% {
           stroke-dasharray: 90, 150;
           stroke-dashoffset: -124;
@@ -160,14 +162,25 @@ body {
 
     .setting {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 1em;
       margin-bottom: 0.5em;
 
+      .info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        text-align: start;
+      }
+
       .setting-name {
         font-weight: 600;
         white-space: nowrap;
+      }
+
+      .setting-description {
+        font-style: italic;
       }
     }
   }
