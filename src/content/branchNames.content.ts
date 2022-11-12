@@ -25,11 +25,11 @@ new MutationObserver(function (_, p_observer) {
 }).observe(document.body, { childList: true });
 
 const detectCreateBranchDropdownInput = () => {
-  const createBranchDropdown = document.querySelector(
+  const createBranchDropdown = document.querySelector<HTMLDivElement>(
     '[data-testid="development-summary-branch.ui.create-branch-dropdown.git-command-section"]'
   );
 
-  if (createBranchDropdown) {
+  if (createBranchDropdown && createBranchDropdown.dataset["jira_plus_set_branchnames"] !== "true") {
     const input = createBranchDropdown.querySelector<HTMLInputElement>(
       'input[data-testid*="platform-copy-text-field"]'
     );
@@ -54,5 +54,7 @@ const detectCreateBranchDropdownInput = () => {
 
     console.debug(`Replacing copy from '${currentCopy}' to ${newCopy}`);
     input.value = newCopy;
+
+    createBranchDropdown.dataset["jira_plus_set_branchnames"] = "true";
   }
 };
