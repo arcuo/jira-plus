@@ -3,6 +3,7 @@
   "name": "Jira Plus",
   "version": "1.0.0",
   "description": "Extension to improve JIRA experience",
+  "homepage_url": "https://github.com/arcuo/jira-plus",
   "icons": {
     "16": "icons/icon_16.png",
     "32": "icons/icon_32.png",

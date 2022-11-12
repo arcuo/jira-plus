@@ -48,8 +48,8 @@ const detectCreateBranchDropdownInput = () => {
       .join('/');
 
     const newCopy = currentCopy?.replace(
-      /^(git checkout -b )([A-Z]+-[0-9]+)\/(.*)$/g,
-      `$1${issueList}/$3`
+      /^(git checkout -b )([A-Z]+-[0-9]+)(\/|-)(.*)$/g,
+      `$1${issueList}$3$4`
     );
 
     console.debug(`Replacing copy from '${currentCopy}' to ${newCopy}`);
