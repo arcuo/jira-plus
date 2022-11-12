@@ -6,9 +6,9 @@ Quality of life changes to JIRA
 
 - **Epic links**: Adds links to the epic titles in the board.
 - **Styling**: Adds some styling to the JIRA board
-- **Git branch parent keys**: Adds parent issue keys to the git branch creation copy value. E.g. "FEAT-1234/FEAT-4325" 
   - Spacing to the expand button for epics
   - **Coming soon**: Enable/disable specific styling changes
+- **Git branch parent keys**: Adds parent issue keys to the git branch creation copy value. E.g. "FEAT-1234/FEAT-4325" 
 
 ## Manual install (Chrome)
 
