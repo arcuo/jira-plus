@@ -21,8 +21,16 @@
     {
       "matches": ["https://*.atlassian.net/jira/*"],
       "run_at": "document_idle",
-      "js": ["content.js"],
-      "css": ["content.css"]
+      "js": ["epicLinks.content.js", "styling.content.js"],
+      "css": ["styling.content.css"]
+    },
+    {
+      "matches": [
+        "https://*.atlassian.net/jira/*",
+        "https://*.atlassian.net/browse/*"
+      ],
+      "run_at": "document_idle",
+      "js": ["branchNames.content.js"]
     }
   ]
 }

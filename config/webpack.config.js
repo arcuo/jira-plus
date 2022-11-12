@@ -12,8 +12,10 @@ const config = (env, argv) =>
     mode: 'production',
     entry: {
       popup: PATHS.src + '/popup.ts',
-      content: PATHS.src + '/content.ts',
       background: PATHS.src + '/background.ts',
+      "branchNames.content": PATHS.src + '/content/branchNames.content.ts',
+      "styling.content": PATHS.src + '/content/styling.content.ts',
+      "epicLinks.content": PATHS.src + '/content/epicLinks.content.ts',
     },
     output: {
       path: PATHS.build,
