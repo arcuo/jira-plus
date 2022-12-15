@@ -19,15 +19,17 @@ let epicsSettingEnabled = false;
 
 // Detect dom changes for react re-renders
 const observer = new MutationObserver(function (mutations_list) {
-  mutations_list.forEach(function (mutation) {
-    mutation.addedNodes.forEach(function (added_node) {
-      const element = added_node as Element;
-      if (element.classList && element.classList.contains('ghx-swimlane')) {
-        observer.disconnect();
-        setEpicLinks(epicsSettingEnabled);
-      }
+  if ( /https:\/\/.*\.atlassian.net\/jira\//.test(location.href)) {
+    mutations_list.forEach(function (mutation) {
+      mutation.addedNodes.forEach(function (added_node) {
+        const element = added_node as Element;
+        if (element.classList && element.classList.contains('ghx-swimlane')) {
+          observer.disconnect();
+          setEpicLinks(epicsSettingEnabled);
+        }
+      });
     });
-  });
+  }
 });
 
 const startObserve = () => {

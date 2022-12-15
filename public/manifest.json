@@ -20,7 +20,10 @@
   "permissions": ["storage", "tabs"],
   "content_scripts": [
     {
-      "matches": ["https://*.atlassian.net/jira/*"],
+      "matches": [
+        "https://*.atlassian.net/jira/*",
+        "https://*.atlassian.net/browse/*"
+      ],
       "run_at": "document_idle",
       "js": ["epicLinks.content.js", "styling.content.js"],
       "css": ["styling.content.css"]
