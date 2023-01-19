@@ -15,28 +15,49 @@ import { SettingId } from './types';
   // https://developer.chrome.com/extensions/declare_permissions
 
   let epicSettingChanged = false;
+  let coloredSettingsChanged = false;
 
   const settingsStorage = new SettingsStorage();
 
-  const handleCheckbox = (settingId: SettingId, callback?: (value: boolean) => void) => {
-
+  const handleCheckbox = (
+    settingId: SettingId,
+    callback?: (value: boolean) => void
+  ) => {
     settingsStorage.getSetting<boolean>(settingId, (result) => {
       const settingInput = $<HTMLInputElement>(`#${settingId} input`);
       if (typeof result === 'boolean') {
         settingInput.prop('checked', result);
       }
       settingInput.on('change', (e) => {
-        settingsStorage.setSetting<boolean>(settingId, (e.target as HTMLInputElement).checked, callback);
-      })
+        settingsStorage.setSetting<boolean>(
+          settingId,
+          (e.target as HTMLInputElement).checked,
+          callback
+        );
+      });
     });
+  };
 
+  // Epics links
+  handleCheckbox(SettingId.EPIC_LINKS, (enabled) => {
+    // Skip if enabling epic links
+    if (enabled) return;
 
-  }
-
-  // Epics links 
-  handleCheckbox(SettingId.EPIC_LINKS, () => {
     epicSettingChanged = !epicSettingChanged;
     if (epicSettingChanged) {
+      $(`div.requires-reload`)[0].style.display = 'flex';
+    } else {
+      $(`div.requires-reload`)[0].style.display = 'none';
+    }
+  });
+
+  // Colored epics
+  handleCheckbox(SettingId.COLORED_EPICS, (enabled) => {
+    // Skip if enabling colored epics
+    if (enabled) return;
+
+    coloredSettingsChanged = !coloredSettingsChanged;
+    if (coloredSettingsChanged) {
       $(`div.requires-reload`)[0].style.display = 'flex';
     } else {
       $(`div.requires-reload`)[0].style.display = 'none';
@@ -60,12 +81,12 @@ import { SettingId } from './types';
         chrome.tabs.onUpdated.addListener((id, changeInfo, tab) => {
           if (id === tabId && changeInfo.status === 'complete') {
             epicSettingChanged = false;
+            coloredSettingsChanged = false;
             $(`div.requires-reload`)[0].style.display = 'none';
             reloadButton.removeClass('loading');
           }
-        })
+        });
       }
-    })
+    });
   });
-
 })();

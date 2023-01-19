@@ -15,7 +15,7 @@ const config = (env, argv) =>
       background: PATHS.src + '/background.ts',
       "branchNames.content": PATHS.src + '/content/branchNames.content.ts',
       "styling.content": PATHS.src + '/content/styling.content.ts',
-      "epicLinks.content": PATHS.src + '/content/epicLinks.content.ts',
+      "epics.content": PATHS.src + '/content/epics.content.ts',
     },
     output: {
       path: PATHS.build,

@@ -13,7 +13,7 @@ import './styling.content.scss';
 // For more information on Content Scripts,
 // See https://developer.chrome.com/extensions/content_scripts
 import $ from 'jquery';
-import { listenForSettingsChanges, settingsStorage } from '../settings';
+import { listenForSettingChanges, settingsStorage } from '../settings';
 import { SettingId } from '../types';
 
 /** Enable the custom styling feature */
@@ -29,6 +29,6 @@ const enableStyling = (enabled: boolean) => {
 settingsStorage.getSetting<boolean>(SettingId.STYLING, enableStyling);
 
 // Listen for setting changes
-listenForSettingsChanges({
+listenForSettingChanges({
   [SettingId.STYLING]: enableStyling,
 });
