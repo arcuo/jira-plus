@@ -26,8 +26,8 @@ Build the project
 
 ```sh
 $ cd jira-plus
-$ yarn install
-$ yarn build
+$ pnpm install --frozen-lockfile
+$ pnpm build
 ```
 
 Load the extension in chrome by going to `chrome://extensions/`. Set **Developer mode** true. Then click "Load unpacked" and navigate to  `../jira-plus/build` folder and select.
@@ -69,7 +69,7 @@ Use web-ext to run the extension
 ```sh
 $ npm install --global web-ext
 # or
-$ yarn global add web-ext
+$ pnpm global add web-ext
 
 ```
 
