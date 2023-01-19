@@ -167,6 +167,17 @@ body {
       gap: 1em;
       margin-bottom: 0.5em;
 
+      .project-key-list {
+        display: flex;
+        gap: 0.5em;
+        .project-key-label {
+          padding: 0.2em 0.5em;
+          border-radius: 0.28em;
+          width: fit-content;
+        }
+      }
+
+
       .info {
         display: flex;
         flex-direction: column;

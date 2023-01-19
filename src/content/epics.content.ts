@@ -88,6 +88,7 @@ const setEpicLink = (info: EpicInfo) => {
   heading.append(link);
 };
 
+// TODO - allow setting colors in settings
 const colors = {
   MP: {color: '#ff5630', textColor: '#000'},
   FEAT: {color: '#6555c0', textColor: '#fff'},
