@@ -93,6 +93,7 @@ const colors = {
   MP: {color: '#ff5630', textColor: '#000'},
   FEAT: {color: '#6555c0', textColor: '#fff'},
   INCID: {color: '#00c7e6', textColor: '#000'},
+  QA: {color: '#2684ff', textColor: '#000'},
 };
 
 type ProjectColor = Partial<typeof colors[keyof typeof colors]>;
