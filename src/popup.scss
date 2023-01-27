@@ -169,6 +169,7 @@ body {
 
       .project-key-list {
         display: flex;
+        flex-direction: column;
         gap: 0.5em;
         .project-key-label {
           padding: 0.2em 0.5em;
