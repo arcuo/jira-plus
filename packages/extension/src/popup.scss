@@ -170,7 +170,10 @@ body {
       .project-key-list {
         display: flex;
         flex-direction: column;
-        gap: 0.5em;
+        gap: 1em;
+        border-radius: 0.25em;
+        padding: 1em;
+
         .project-key-label {
           padding: 0.2em 0.5em;
           border-radius: 0.28em;

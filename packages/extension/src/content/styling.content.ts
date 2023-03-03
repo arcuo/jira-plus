@@ -13,8 +13,8 @@ import './styling.content.scss';
 // For more information on Content Scripts,
 // See https://developer.chrome.com/extensions/content_scripts
 import $ from 'jquery';
-import { listenForSettingChanges, settingsStorage } from '../settings';
-import { SettingId } from '../types';
+import { listenForSettingChanges, settingsStorage } from 'utils';
+import { SettingId } from 'utils/src/types';
 
 /** Enable the custom styling feature */
 const enableStyling = (enabled: boolean) => {

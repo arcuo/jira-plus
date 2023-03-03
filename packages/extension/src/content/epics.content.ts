@@ -12,8 +12,8 @@
 // See https://developer.chrome.com/extensions/content_scripts
 import $ from 'jquery';
 import { debounce } from 'ts-debounce';
-import { listenForAllSettingsChanges, settingsStorage } from '../settings';
-import { SettingId } from '../types';
+import { listenForAllSettingsChanges, settingsStorage } from 'utils';
+import { SettingId } from 'utils/src/types';
 import type { EpicInfo } from '../utils';
 import { fetchEpicInfo, getEpics } from '../utils';
 

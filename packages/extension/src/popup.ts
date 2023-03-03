@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-import $ from 'jquery';
-import './popup.scss';
-import { SettingsStorage } from './storage';
-import { SettingId } from './types';
+import $ from "jquery";
+import { SettingsStorage } from "utils";
+import { SettingId } from "utils/src/types";
+import "./popup.scss";
 
 (function () {
   // We will make use of Storage API to get and store `count` value
@@ -25,10 +25,10 @@ import { SettingId } from './types';
   ) => {
     settingsStorage.getSetting<boolean>(settingId, (result) => {
       const settingInput = $<HTMLInputElement>(`#${settingId} input`);
-      if (typeof result === 'boolean') {
-        settingInput.prop('checked', result);
+      if (typeof result === "boolean") {
+        settingInput.prop("checked", result);
       }
-      settingInput.on('change', (e) => {
+      settingInput.on("change", (e) => {
         settingsStorage.setSetting<boolean>(
           settingId,
           (e.target as HTMLInputElement).checked,
@@ -45,9 +45,9 @@ import { SettingId } from './types';
 
     epicSettingChanged = !epicSettingChanged;
     if (epicSettingChanged) {
-      $(`div.requires-reload`)[0].style.display = 'flex';
+      $(`div.requires-reload`)[0].style.display = "flex";
     } else {
-      $(`div.requires-reload`)[0].style.display = 'none';
+      $(`div.requires-reload`)[0].style.display = "none";
     }
   });
 
@@ -58,9 +58,9 @@ import { SettingId } from './types';
 
     coloredSettingsChanged = !coloredSettingsChanged;
     if (coloredSettingsChanged) {
-      $(`div.requires-reload`)[0].style.display = 'flex';
+      $(`div.requires-reload`)[0].style.display = "flex";
     } else {
-      $(`div.requires-reload`)[0].style.display = 'none';
+      $(`div.requires-reload`)[0].style.display = "none";
     }
   });
 
@@ -71,19 +71,19 @@ import { SettingId } from './types';
   handleCheckbox(SettingId.BRANCHNAMES);
 
   // Reload page handling
-  const reloadButton = $('#reload-button');
-  reloadButton.on('click', () => {
-    chrome.tabs.query({ url: '*://*.atlassian.net/*' }, (tabs) => {
+  const reloadButton = $("#reload-button");
+  reloadButton.on("click", () => {
+    chrome.tabs.query({ url: "*://*.atlassian.net/*" }, (tabs) => {
       if (tabs.length > 0 && tabs[0].id) {
         const tabId = tabs[0].id;
         chrome.tabs.reload(tabId);
-        reloadButton.addClass('loading');
+        reloadButton.addClass("loading");
         chrome.tabs.onUpdated.addListener((id, changeInfo, tab) => {
-          if (id === tabId && changeInfo.status === 'complete') {
+          if (id === tabId && changeInfo.status === "complete") {
             epicSettingChanged = false;
             coloredSettingsChanged = false;
-            $(`div.requires-reload`)[0].style.display = 'none';
-            reloadButton.removeClass('loading');
+            $(`div.requires-reload`)[0].style.display = "none";
+            reloadButton.removeClass("loading");
           }
         });
       }

@@ -1,5 +1,4 @@
-import { SettingId } from './types';
-
+import type { SettingId } from './types';
 
 export class SettingsStorage {
   getSetting = <T>(settingKey: SettingId, cb?: (result: T) => void) => {
@@ -20,7 +19,6 @@ export class SettingsStorage {
     value: T,
     onSuccess?: (value: T) => void
   ) => {
-    console.log('value:', value);
 
     chrome.storage.sync.set(
       {

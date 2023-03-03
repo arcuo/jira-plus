@@ -1,7 +1,6 @@
 'use strict';
-
-import { settingsStorage } from '../settings';
-import { SettingId } from '../types';
+import { settingsStorage } from 'utils';
+import { SettingId } from 'utils/src/types';
 
 // Content script file will run in the context of web page.
 

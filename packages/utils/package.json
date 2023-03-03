@@ -1,0 +1,27 @@
+{
+  "name": "utils",
+  "tsup": {
+    "dts": true,
+    "format": [
+      "cjs",
+      "esm"
+    ],
+    "external": [
+      "chrome"
+    ],
+    "entry": ["src/index.ts"]
+  },
+  
+  "scripts": {
+    "build": "tsup ",
+    "dev": "tsup --watch"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "devDependencies": {
+    "tsup": "^6.6.3",
+    "typescript": "^4.9.5",
+    "@types/chrome": "^0.0.193"
+  }
+}
