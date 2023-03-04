@@ -15,7 +15,7 @@
   },
   "action": {
     "default_title": "Jira Plus",
-    "default_popup": "popup.html"
+    "default_popup": "/popup/index.html"
   },
   "permissions": ["storage", "tabs"],
   "content_scripts": [

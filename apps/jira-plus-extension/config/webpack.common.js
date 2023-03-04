@@ -52,7 +52,7 @@ const common = {
             ignore: ['**/manifest.json', '**/manifest_firefox.json'],
           },
           context: 'public',
-        },
+        }
       ],
     }),
   ],

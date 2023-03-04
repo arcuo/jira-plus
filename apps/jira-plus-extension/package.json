@@ -36,6 +36,7 @@
     "hybrids": "^8.1.13",
     "jquery": "^3.6.0",
     "ts-debounce": "^4.0.0",
-    "utils": "workspace:*"
+    "utils": "workspace:*",
+    "popup": "workspace:*"
   }
 }
