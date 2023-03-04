@@ -7,7 +7,7 @@
     "watch": "pnpm clean && webpack --mode=development --watch --config config/webpack.config.js",
     "clean": "rm -rf build && rm -f build.zip",
     "build": "pnpm clean && webpack --mode=production --config config/webpack.config.js && pnpm zip",
-    "build:firefox": "pnpm clean && webpack --mode=production --config config/webpack.firefox.js && yarn zip",
+    "build:firefox": "pnpm clean && webpack --mode=production --config config/webpack.firefox.js && pnpm zip",
     "format": "prettier --write --ignore-unknown \"{config,public,src}/**/*.{html,css,js,ts,json}\"",
     "lint": "eslint . --ext .ts",
     "zip": "rm -f build.zip && cd build && zip -r ../build.zip * && cd .."
