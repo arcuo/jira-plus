@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Jira Plus",
+  "version": "2.0.1",
+  "description": "Extension to improve JIRA experience",
+  "homepage_url": "https://github.com/arcuo/jira-plus",
+  "icons": {
+    "16": "icons/icon_16.png",
+    "32": "icons/icon_32.png",
+    "48": "icons/icon_48.png",
+    "128": "icons/icon_128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Jira Plus",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["storage", "tabs"],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.atlassian.net/jira/*",
+        "https://*.atlassian.net/browse/*"
+      ],
+      "run_at": "document_idle",
+      "js": ["epics.content.js", "styling.content.js"],
+      "css": ["styling.content.css"]
+    },
+    {
+      "matches": [
+        "https://*.atlassian.net/jira/*",
+        "https://*.atlassian.net/browse/*"
+      ],
+      "run_at": "document_idle",
+      "js": ["branchNames.content.js"]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+
+> jira-plus@1.0.0 build /home/benjamin/Repos/jira-plus/apps/jira-plus-extension
+> pnpm clean && webpack --mode=production --config config/webpack.config.js
+
+
+> jira-plus@1.0.0 clean /home/benjamin/Repos/jira-plus/apps/jira-plus-extension
+> rm -rf build && rm -f build.zip
+
+hidden assets 20.1 KiB 8 assets
+asset epics.content.js 93 KiB [emitted] [minimized] (name: epics.content) 1 related asset
+asset styling.content.js 90.3 KiB [emitted] [minimized] (name: styling.content) 1 related asset
+asset assets/popup.js 5.46 KiB [emitted] [from: ../../packages/popup/dist/assets/popup.js] [copied] [minimized]
+asset branchNames.content.js 2.77 KiB [emitted] [minimized] (name: branchNames.content)
+asset assets/popup.css 1.27 KiB [emitted] [from: ../../packages/popup/dist/assets/popup.css] [copied]
+asset manifest.json 992 bytes [emitted] [from: public/manifest.json] [copied]
+asset popup.html 439 bytes [emitted] [from: ../../packages/popup/dist/index.html] [copied]
+asset styling.content.css 321 bytes [emitted] [from: src/content/styling.content.scss] (auxiliary name: styling.content)
+asset background.js 145 bytes [emitted] [minimized] (name: background)
+2023-03-04 10:35:18: webpack compiled
