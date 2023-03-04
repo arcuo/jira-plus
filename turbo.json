@@ -3,7 +3,10 @@
   "pipeline": {
     "build": {
       "outputs": ["dist/**", "build/**"],
-      "inputs": []
+      "dependsOn": ["^build-popup"]
+    },
+    "build-popup": {
+      "outputs": ["dist/**"]
     },
     "lint": {
       "outputs": []

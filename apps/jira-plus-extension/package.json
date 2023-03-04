@@ -37,6 +37,6 @@
     "jquery": "^3.6.0",
     "ts-debounce": "^4.0.0",
     "utils": "workspace:*",
-    "popup/dist": "workspace:*"
+    "popup": "workspace:*"
   }
 }

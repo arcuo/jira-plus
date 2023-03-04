@@ -78,6 +78,7 @@ importers:
     specifiers:
       '@sveltejs/vite-plugin-svelte': ^2.0.2
       '@tsconfig/svelte': ^3.0.0
+      sass: ^1.54.4
       svelte: ^3.55.1
       svelte-check: ^2.10.3
       tslib: ^2.5.0
@@ -86,11 +87,12 @@ importers:
     devDependencies:
       '@sveltejs/vite-plugin-svelte': 2.0.3_svelte@3.55.1+vite@4.1.4
       '@tsconfig/svelte': 3.0.0
+      sass: 1.58.3
       svelte: 3.55.1
-      svelte-check: 2.10.3_svelte@3.55.1
+      svelte-check: 2.10.3_sass@1.58.3+svelte@3.55.1
       tslib: 2.5.0
       typescript: 4.9.5
-      vite: 4.1.4
+      vite: 4.1.4_sass@1.58.3
 
   packages/utils:
     specifiers:
@@ -625,7 +627,7 @@ packages:
       magic-string: 0.29.0
       svelte: 3.55.1
       svelte-hmr: 0.15.1_svelte@3.55.1
-      vite: 4.1.4
+      vite: 4.1.4_sass@1.58.3
       vitefu: 0.2.4_vite@4.1.4
     transitivePeerDependencies:
       - supports-color
@@ -2940,7 +2942,7 @@ packages:
     engines: {node: '>= 0.4'}
     dev: true
 
-  /svelte-check/2.10.3_svelte@3.55.1:
+  /svelte-check/2.10.3_sass@1.58.3+svelte@3.55.1:
     resolution: {integrity: sha512-Nt1aWHTOKFReBpmJ1vPug0aGysqPwJh2seM1OvICfM2oeyaA62mOiy5EvkXhltGfhCcIQcq2LoE0l1CwcWPjlw==}
     hasBin: true
     peerDependencies:
@@ -2953,7 +2955,7 @@ packages:
       picocolors: 1.0.0
       sade: 1.8.1
       svelte: 3.55.1
-      svelte-preprocess: 4.10.7_4x7phaipmicbaooxtnresslofa
+      svelte-preprocess: 4.10.7_fsk2356kdqta2rdbnwwjn3abbe
       typescript: 4.9.5
     transitivePeerDependencies:
       - '@babel/core'
@@ -2977,7 +2979,7 @@ packages:
       svelte: 3.55.1
     dev: true
 
-  /svelte-preprocess/4.10.7_4x7phaipmicbaooxtnresslofa:
+  /svelte-preprocess/4.10.7_fsk2356kdqta2rdbnwwjn3abbe:
     resolution: {integrity: sha512-sNPBnqYD6FnmdBrUmBCaqS00RyCsCpj2BG58A1JBswNF7b0OKviwxqVrOL/CKyJrLSClrSeqQv5BXNg2RUbPOw==}
     engines: {node: '>= 9.11.2'}
     requiresBuild: true
@@ -3022,6 +3024,7 @@ packages:
       '@types/sass': 1.45.0
       detect-indent: 6.1.0
       magic-string: 0.25.9
+      sass: 1.58.3
       sorcery: 0.10.0
       strip-indent: 3.0.0
       svelte: 3.55.1
@@ -3343,39 +3346,6 @@ packages:
       - terser
     dev: true
 
-  /vite/4.1.4:
-    resolution: {integrity: sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': '>= 14'
-      less: '*'
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      esbuild: 0.16.17
-      postcss: 8.4.21
-      resolve: 1.22.1
-      rollup: 3.18.0
-    optionalDependencies:
-      fsevents: 2.3.2
-    dev: true
-
   /vite/4.1.4_52uvnhaycl4a477g5zbklhttxy:
     resolution: {integrity: sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -3411,6 +3381,40 @@ packages:
       fsevents: 2.3.2
     dev: true
 
+  /vite/4.1.4_sass@1.58.3:
+    resolution: {integrity: sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': '>= 14'
+      less: '*'
+      sass: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      esbuild: 0.16.17
+      postcss: 8.4.21
+      resolve: 1.22.1
+      rollup: 3.18.0
+      sass: 1.58.3
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
   /vitefu/0.2.4_vite@4.1.4:
     resolution: {integrity: sha512-fanAXjSaf9xXtOOeno8wZXIhgia+CZury481LsDaV++lSvcU2R9Ch2bPh3PYFyoHW+w9LqAeYRISVQjUIew14g==}
     peerDependencies:
@@ -3419,7 +3423,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 4.1.4
+      vite: 4.1.4_sass@1.58.3
     dev: true
 
   /vitest/0.28.5_sass@1.58.3:

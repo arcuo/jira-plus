@@ -1,48 +1,109 @@
 <script lang="ts">
-  import svelteLogo from './assets/svelte.svg'
-  import viteLogo from './assets/vite.svg'
-  import Counter from './lib/Counter.svelte'
-  console.log('hello from svelte')
+  import titleLogo from "./assets/title_icon.svg";
+  import githubLogo from "./assets/github-icon.svg";
+  import Setting from "./lib/Setting.svelte";
 </script>
 
 <main>
-  <div>
-    <a href="https://vitejs.dev" target="_blank" rel="noreferrer"> 
-      <img src={viteLogo} class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank" rel="noreferrer"> 
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
-  </div>
-  <h1>Vite + Svelte TEST </h1>
+  <body>
+    <div class="app">
+      <div class="title-logo">
+        <img src={titleLogo} alt="Jira Plus" />
+      </div>
+      <div class="subtitle">Quality of life changes to JIRA</div>
 
-  <div class="card">
-    <Counter />
-  </div>
+      <div class="divider" />
 
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
+      <!-- Settings -->
+      <ul class="settings">
+        <Setting
+          key="jira_plus_epic_links"
+          settingName="Epic links"
+          settingDescription="Add link to the title of epics on kanban boards"
+        />
+        <li class="setting" id="jira_plus_colored_epics">
+          <div class="info">
+            <span class="setting-name">Colored epics</span>
+            <span class="setting-description"
+              >Colored epics by project type in the kanban board</span
+            >
 
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
+            <div class="project-key-list">
+              <span
+                class="project-key-label"
+                style="background-color: #ff5630; color: #000 "
+                >Maintenance</span
+              >
+              <span
+                class="project-key-label"
+                style="background-color: #6555c0; color: #fff ">Feature</span
+              >
+              <span
+                class="project-key-label"
+                style="background-color: #00c7e6; color: #000 ">Incident</span
+              >
+              <span
+                class="project-key-label"
+                style="background-color: #2684ff; color: #000 ">QA</span
+              >
+            </div>
+          </div>
+          <input type="checkbox" />
+        </li>
+        <li class="setting" id="jira_plus_styling">
+          <div class="info">
+            <span class="setting-name">Styling</span>
+            <span class="setting-description"
+              >Add some "nice-to-have" styling to JIRA</span
+            >
+          </div>
+          <input type="checkbox" />
+        </li>
+        <li class="setting" id="jira_plus_branchnames">
+          <div class="info">
+            <span class="setting-name">Git branch creation</span>
+            <span class="setting-description"
+              >Add parent keys to git branch creation copied value</span
+            >
+          </div>
+          <input type="checkbox" />
+        </li>
+      </ul>
+
+      <div class="requires-reload" style="display: none;">
+        <span> Page reload required </span>
+        <button id="reload-button">
+          <span class="text">Reload</span>
+          <svg class="spinner" viewBox="0 0 50 50">
+            <circle
+              class="path"
+              cx="25"
+              cy="25"
+              r="20"
+              fill="none"
+              stroke-width="5"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div class="divider" />
+
+      <div class="footer">
+        <a
+          href="https://github.com/arcuo/jira-plus"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div class="github-link">
+            <img src={githubLogo} alt="Github" />
+          </div>
+        </a>
+        <span class="author">Created by Benjamin Zachariae</span>
+      </div>
+    </div>
+  </body>
 </main>
 
 <style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
-  }
 </style>

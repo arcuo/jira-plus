@@ -15,7 +15,7 @@ import { debounce } from 'ts-debounce';
 import { listenForAllSettingsChanges, settingsStorage } from 'utils';
 import { SettingId } from 'utils/src/types';
 import type { EpicInfo } from '../utils';
-import { fetchEpicInfo, getEpics } from '../utils';
+import { fetchEpicInfo, getEpics } from '../utils'; 
 
 /** Storing whether or not the epics settings are enabled. */
 const settings = {
