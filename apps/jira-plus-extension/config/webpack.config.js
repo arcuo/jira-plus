@@ -57,8 +57,13 @@ const config = (env, argv) =>
           // Copy dist from svelte popup app
           {
             from: PATHS.packages + "/popup/dist",
-            to: "popup",
+            to: ".",
+            filter: (resourcePath) => !resourcePath.endsWith("dist/index.html")
           },
+          {
+            from: PATHS.packages + "/popup/dist/index.html",
+            to: "popup.html",
+          }
         ],
       }),
     ],

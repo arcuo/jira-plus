@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Jira Plus",
-  "version": "1.0.0",
+  "version": "2.0.1",
   "description": "Extension to improve JIRA experience",
   "homepage_url": "https://github.com/arcuo/jira-plus",
   "icons": {
@@ -15,7 +15,7 @@
   },
   "action": {
     "default_title": "Jira Plus",
-    "default_popup": "/popup/index.html"
+    "default_popup": "popup.html"
   },
   "permissions": ["storage", "tabs"],
   "content_scripts": [
