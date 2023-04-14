@@ -1,9 +1,41 @@
 'use strict';
 
 import $ from 'jquery';
+import { Octokit } from 'octokit';
 import './popup.scss';
 import { SettingsStorage } from './storage';
 import { SettingId } from './types';
+
+import { version as localVersion } from './../public/manifest.json';
+
+(async function () {
+  const octokit = new Octokit({
+    // auth: 'YOUR-TOKEN',
+  });
+
+  const response = await octokit.request(
+    'GET /repos/{owner}/{repo}/contents/{path}',
+    {
+      owner: 'arcuo',
+      repo: 'jira-plus',
+      path: 'public/manifest.json',
+      headers: {
+        'X-GitHub-Api-Version': '2022-11-28',
+      },
+    }
+  );
+
+  if (
+    response.data &&
+    'type' in response.data &&
+    response.data.type === 'file'
+  ) {
+    const manifest = JSON.parse(atob(response.data.content));
+    if (manifest.version !== localVersion) {
+      $('#update-available').show();
+    }
+  }
+})();
 
 (function () {
   // We will make use of Storage API to get and store `count` value
