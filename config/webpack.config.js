@@ -2,9 +2,13 @@
 
 const { merge } = require('webpack-merge');
 
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');    
+const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
+
 const common = require('./webpack.common.js');
 const PATHS = require('./paths');
+var MANIFEST = require(PATHS.public + '/manifest.json');
+var version = MANIFEST.version;
 
 // Merge webpack configuration files
 const config = (env, argv) =>
@@ -52,10 +56,18 @@ const config = (env, argv) =>
         patterns: [
           {
             from: '**/manifest.json',
-            context: 'public',
+            context: PATHS.public,
           },
         ],
       }),
+      new ReplaceInFileWebpackPlugin([{
+        dir: PATHS.build,
+        files: ['popup.html'],
+        rules: [{
+            search: '$VERSION',
+            replace: version
+        }]
+    }]),
     ],
   });
 

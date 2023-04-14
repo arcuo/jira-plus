@@ -47,28 +47,34 @@ const runThroughEpics = (options: {
   [SettingId.EPIC_LINKS]: boolean;
   [SettingId.COLORED_EPICS]: boolean;
 }) => {
-  const epicsSettingEnabled = options[SettingId.EPIC_LINKS];
-  const coloredEpicsEnabled = options[SettingId.COLORED_EPICS];
+  try {
+    const epicsSettingEnabled = options[SettingId.EPIC_LINKS];
+    const coloredEpicsEnabled = options[SettingId.COLORED_EPICS];
+  
+    settings[SettingId.EPIC_LINKS] = epicsSettingEnabled;
+    settings[SettingId.COLORED_EPICS] = epicsSettingEnabled;
+  
+    const nonEnabled = !epicsSettingEnabled && !coloredEpicsEnabled;
+    if (nonEnabled) return;
+  
+    const epics = getEpics();
+    const epicsInfo = epics.toArray().map((epic) => fetchEpicInfo(epic));
+  
+    epicsInfo.forEach((info) => {
+      if (epicsSettingEnabled) {
+        setEpicLink(info);
+      }
+      if (coloredEpicsEnabled) {
+        setColoredEpic(info);
+      }
+    });
 
-  settings[SettingId.EPIC_LINKS] = epicsSettingEnabled;
-  settings[SettingId.COLORED_EPICS] = epicsSettingEnabled;
-
-  const nonEnabled = !epicsSettingEnabled && !coloredEpicsEnabled;
-  if (nonEnabled) return;
-
-  const epics = getEpics();
-  const epicsInfo = epics.toArray().map((epic) => fetchEpicInfo(epic));
-
-  epicsInfo.forEach((info) => {
-    if (epicsSettingEnabled) {
-      setEpicLink(info);
-    }
-    if (coloredEpicsEnabled) {
-      setColoredEpic(info);
-    }
-  });
+  } catch (e) {
+    console.error("Jira plus - Something went wrong: ", e);
+  }
 
   startObserve();
+
 };
 
 const debounceRunThroughEpics = debounce(runThroughEpics, 500);
@@ -94,6 +100,7 @@ const colors = {
   FEAT: {color: '#6555c0', textColor: '#fff'},
   INCID: {color: '#00c7e6', textColor: '#000'},
   QA: {color: '#2684ff', textColor: '#000'},
+  IMP: {color: '#ffab00', textColor: '#000'},
 };
 
 type ProjectColor = Partial<typeof colors[keyof typeof colors]>;
@@ -109,7 +116,8 @@ const setColoredEpic = (info: EpicInfo) => {
     | ProjectKey
     | undefined;
 
-  const {color, textColor}: ProjectColor = projectKey ? colors[projectKey] : {};
+  const projectColor: ProjectColor = projectKey ? colors[projectKey] : {};
+  const {color, textColor} = projectColor;
 
   if (!heading.length) return;
 
