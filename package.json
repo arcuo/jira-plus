@@ -32,6 +32,7 @@
     "webpack-cli": "^4.10.0",
     "webpack-merge": "^5.8.0"
   },
+  "packageManager": "pnpm@8.1.0",
   "dependencies": {
     "jquery": "^3.6.0",
     "ts-debounce": "^4.0.0"
