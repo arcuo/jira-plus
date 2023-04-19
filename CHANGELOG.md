@@ -1,5 +1,11 @@
 # jira-plus
 
+## 1.1.3
+
+### Patch Changes
+
+- Hide icons in dropdown board selector for more space
+
 ## 1.1.2
 
 ### Patch Changes
