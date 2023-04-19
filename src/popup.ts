@@ -31,6 +31,8 @@ import { version as localVersion } from './../public/manifest.json';
     response.data.type === 'file'
   ) {
     const manifest = JSON.parse(atob(response.data.content));
+    console.log('manifest version:', manifest.version);
+    console.log('local version:', localVersion);
     if (manifest.version !== localVersion) {
       $('#update-available').show();
     }
