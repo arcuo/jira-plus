@@ -1,5 +1,7 @@
 # <img src="public/icons/icon_vector.svg" height="89">&nbsp; &nbsp; &nbsp;<img src="public/title_icon.svg">
 
+[![npm version](https://badge.fury.io/js/get-version.svg)](http://badge.fury.io/js/get-version)
+
 Quality of life changes to JIRA
 
 ## Features
@@ -8,7 +10,7 @@ Quality of life changes to JIRA
 - **Styling**: Adds some styling to the JIRA board
   - Spacing to the expand button for epics
   - **Coming soon**: Enable/disable specific styling changes
-- **Git branch parent keys**: Adds parent issue keys to the git branch creation copy value. E.g. "FEAT-1234/FEAT-4325" 
+- **Git branch parent keys**: Adds parent issue keys to the git branch creation copy value. E.g. "FEAT-1234/FEAT-4325"
 
 ## Manual install (Chrome)
 
@@ -30,7 +32,7 @@ $ pnpm install --frozen-lockfile
 $ pnpm build
 ```
 
-Load the extension in chrome by going to `chrome://extensions/`. Set **Developer mode** true. Then click "Load unpacked" and navigate to  `../jira-plus/build` folder and select.
+Load the extension in chrome by going to `chrome://extensions/`. Set **Developer mode** true. Then click "Load unpacked" and navigate to `../jira-plus/build` folder and select.
 
 ## Usage
 
