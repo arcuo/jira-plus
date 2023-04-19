@@ -13,3 +13,6 @@ build.zip
 npm-debug.log*
 
 *.pem
+
+.auth
+.venv
