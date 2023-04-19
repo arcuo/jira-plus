@@ -15,4 +15,11 @@
       }
     }
   }
+
+  // Hide icons in board dropdown
+  [data-testid="ContextualNavigation"] [data-test-id="navigation-apps.common.compontents.switcher.switcher.control"] ~ div {
+    [data-item-elem-before] svg {
+      display: none;
+    }
+  }
 }
