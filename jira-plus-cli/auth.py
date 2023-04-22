@@ -1,8 +1,14 @@
+import argparse
+import pwinput
 import json
 from typing import TypedDict
 from pathlib import Path
 
+from jira import JIRA, JIRAError
+from termcolor import colored
+
 authPath = Path(__file__).parent / "./.auth"
+
 
 class Auth(TypedDict):
     email: str
@@ -27,3 +33,75 @@ def fetchAuthentication() -> Auth | None:
 
 def deleteAuthentication():
     Path(authPath).unlink()
+
+
+def getJira() -> JIRA | None:
+    try:
+        auth = fetchAuthentication()
+        if auth is None:
+            return None
+        jira = JIRA(
+            auth["url"], basic_auth=(auth["email"], auth["api_token"]), validate=True
+        )
+        return jira
+    except JIRAError:
+        print("Could not authenticate with jira")
+        return None
+
+
+authParser = argparse.ArgumentParser(
+    description="Jira Plus CLI - Authenticate with Jira",
+    prog="jira-plus-cli auth",
+)
+
+authParser.add_argument("--logout", help="Logout of Jira", action="store_true")
+authParser.add_argument(
+    "-a",
+    "--api-token",
+    help="API token to JIRA for authentication to login",
+    metavar="API_TOKEN",
+)
+authParser.add_argument(
+    "-e", "--email", help="Email to JIRA for authentication to login", metavar="EMAIL"
+)
+authParser.add_argument(
+    "-u", "--url", help="Url to JIRA space for authentication to login", metavar="EMAIL"
+)
+
+
+def auth(args):
+    args = authParser.parse_args(args)
+
+    jira = getJira()
+
+    if jira is not None:
+        if args.logout:
+            print("Logging out of Jira")
+            deleteAuthentication()
+            quit()
+        else:
+            print(
+                "Logged in to "
+                + colored(jira.user(jira.current_user()).displayName, "green")
+            )
+            quit()
+    else:
+        print("Login to Jira")
+        email = input("Email: ") if not args.email else args.email
+        api_token = (
+            pwinput.pwinput("API Token: ") if not args.api_token else args.api_token
+        )
+
+        url = "https://uniwise.atlassian.net"
+        _url = input(f"URL ({colored(url, 'dark_grey')}): ")
+
+        if _url != "":
+            url = _url
+
+        saveAuthentication(
+            {
+                "email": email,
+                "api_token": api_token,
+                "url": url,
+            }
+        )

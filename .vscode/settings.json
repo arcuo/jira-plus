@@ -2,4 +2,5 @@
   "eslint.options": {
     "overrideConfigFile": ".eslintrc"
   },
+  "python.formatting.provider": "black",
 }

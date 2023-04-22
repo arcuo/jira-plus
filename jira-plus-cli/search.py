@@ -1,7 +1,6 @@
 from jira import Issue, JIRA
 from debounce import debounce
 from termcolor import colored
-import getch
 
 import sys
 
@@ -17,16 +16,16 @@ def delete_last_line():
 delete_lines = lambda n: [delete_last_line() for _ in range(n)]
 
 
-def selectIssue(issues: list[Issue], length: int):
-    selectedIndex = 0
-    selectedIssue = None
-    while not selectedIssue:
-        # print("Select an issue:")
-        try:
-            newChar = getch.getch()
-        except OverflowError:
-            continue
-        handleChar(newChar)
+# def selectIssue(issues: list[Issue], length: int):
+#     selectedIndex = 0
+#     selectedIssue = None
+#     while not selectedIssue:
+#         # print("Select an issue:")
+#         try:
+#             newChar = getch.getch()
+#         except OverflowError:
+#             continue
+#         handleChar(newChar)
 
 
 def getJQLForIssue(search: str):
