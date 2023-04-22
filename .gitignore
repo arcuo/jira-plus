@@ -14,5 +14,8 @@ npm-debug.log*
 
 *.pem
 
+
+# python
 .auth
 .venv
+__pycache__
