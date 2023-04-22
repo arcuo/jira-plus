@@ -39,19 +39,47 @@ def getJira() -> JIRA | None:
     try:
         auth = fetchAuthentication()
         if auth is None:
-            return None
+            return login()
+        
         jira = JIRA(
             auth["url"], basic_auth=(auth["email"], auth["api_token"]), validate=True
         )
+
         return jira
     except JIRAError:
-        print("Could not authenticate with jira")
-        return None
+        print(
+            "Could not authenticate with jira. Are you logged in? Log in with 'jp auth'"
+        )
+        login()
 
+def login(email: str | None = None, api_token: str | None = None):
+    print("Login to Jira")
+    email = input("Email: ") if not email else email
+    api_token = (
+        pwinput.pwinput("API Token: ") if not api_token else api_token
+    )
+
+    url = "https://uniwise.atlassian.net"
+    _url = input(f"URL ({colored(url, 'dark_grey')}): ")
+
+    if _url != "":
+        url = _url
+
+    saveAuthentication(
+        {
+            "email": email,
+            "api_token": api_token,
+            "url": url,
+        }
+    )
+
+def printLoggedInUser(jira: JIRA):
+    user = jira.user(jira.current_user())
+    print(colored("Logged in as: ", "green") + user.displayName)
 
 authParser = argparse.ArgumentParser(
     description="Jira Plus CLI - Authenticate with Jira",
-    prog="jira-plus-cli auth",
+    prog="jp auth",
 )
 
 authParser.add_argument("--logout", help="Logout of Jira", action="store_true")
@@ -80,28 +108,8 @@ def auth(args):
             deleteAuthentication()
             quit()
         else:
-            print(
-                "Logged in to "
-                + colored(jira.user(jira.current_user()).displayName, "green")
-            )
+            printLoggedInUser(jira)
             quit()
     else:
-        print("Login to Jira")
-        email = input("Email: ") if not args.email else args.email
-        api_token = (
-            pwinput.pwinput("API Token: ") if not args.api_token else args.api_token
-        )
-
-        url = "https://uniwise.atlassian.net"
-        _url = input(f"URL ({colored(url, 'dark_grey')}): ")
-
-        if _url != "":
-            url = _url
-
-        saveAuthentication(
-            {
-                "email": email,
-                "api_token": api_token,
-                "url": url,
-            }
-        )
+        login(args.email, args.api_token)
+        printLoggedInUser(jira)
