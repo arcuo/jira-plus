@@ -52,7 +52,7 @@ def getJira() -> JIRA | None:
         )
         login()
 
-def login(email: str | None = None, api_token: str | None = None):
+def login(email: str | None = None, api_token: str | None = None, url: str | None = None):
     print("Login to Jira")
     email = input("Email: ") if not email else email
     api_token = (
@@ -60,7 +60,7 @@ def login(email: str | None = None, api_token: str | None = None):
     )
 
     url = "https://uniwise.atlassian.net"
-    _url = input(f"URL ({colored(url, 'dark_grey')}): ")
+    _url = input(f"URL ({colored(url, 'dark_grey')}): ") if not url else url
 
     if _url != "":
         url = _url
@@ -111,5 +111,5 @@ def auth(args):
             printLoggedInUser(jira)
             quit()
     else:
-        login(args.email, args.api_token)
+        login(args.email, args.api_token, args.url)
         printLoggedInUser(jira)

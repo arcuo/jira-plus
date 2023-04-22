@@ -1,7 +1,5 @@
 import argparse
 import os
-import shutil
-import pathlib
 import stat
 
 from auth import authParser
@@ -12,38 +10,53 @@ home = os.path.expanduser("~" + (username if username else ""))
 
 # TODO: Make filepath dynamic
 bashFile = f"{home}/Repos/jira-plus/jira-plus-cli/jp.sh"
-completionsScriptFish = pathlib.Path(
-    f"{home}/Repos/jira-plus/jira-plus-cli/completions.fish"
-)
 fishConfigCompletionsDir = f"{home}/.config/fish/completions/jp.fish"
-userLocalBinDir = f"/usr/local/bin/jp"
+userLocalBinDir = "/usr/local/bin/jp"
 requirementsFile = f"{home}/Repos/jira-plus/jira-plus-cli/requirements.txt"
 
 
-def fishCompletions():
+def writeFishCompletions():
     print("Registering fish auto completions in ~/.config/fish/completions/jp.fish")
 
-    shutil.copy(
-        completionsScriptFish,
-        fishConfigCompletionsDir,
-    )
+    top = getCompletionsTop()
+    authCompletions = getCommandCompletions(authParser)
 
-def getMainAutoCompletions():
+    with open(fishConfigCompletionsDir, "w") as f:
+        for line in top + authCompletions:
+            f.write(line + "\n")
+        f.close()
+
+
+def getCompletionsTop():
     lines = []
 
-    lines.append("# List of main sub commands")
-    lines.append(f"set -l mainCommands {mainParser._actions[0].choices}")
+    commands = " ".join(mainParser._actions[-1].choices)
 
-    lines.append("# File completions need to be disabled", "complete -c jp -f") 
+    lines += ["# List of main sub commands", f"set -l mainCommands {commands}", ""]
+    lines += ["# File completions need to be disabled", "complete -c jp -f", ""]
 
-    print(lines)
+    return lines
 
-def getCommandAutoCompletions(parser: argparse.ArgumentParser):
-    actionCompletions = [
-        f"complete -c jp -n '__fish_seen_subcommand_from {parser.prog.replace('jp ', '')}' -a '--{action.dest}' -n '{action.help}'"
-        for action in parser._actions
+
+def getCommandCompletions(commandParser: argparse.ArgumentParser):
+    commandName = commandParser.prog.replace("jp ", "")
+    commandDescription = commandParser.description
+    mainCommands = " ".join(mainParser._actions[-1].choices)
+
+    lines = [
+        f"# Completions for '{commandName}' command",
+        f"complete -c jp -n 'not __fish_seen_subcommand_from {mainCommands}' -a {commandName} -d '{commandDescription}'",
+        "",
     ]
-    print(actionCompletions)
+
+    lines += [
+        f"complete -c jp -n '__fish_seen_subcommand_from {commandName}' -a '--{action.dest}' -d '{action.help}'"
+        for action in commandParser._actions
+        if action.dest != "help"
+    ]
+    lines += [f"complete -c jp -n '__fish_seen_subcommand_from {commandName}' -a '--help' -d 'Show help message for {commandName} command'"]
+
+    return lines + [""]
 
 
 def installRequirements():
@@ -70,9 +83,7 @@ def uninstall():
 def install():
     installRequirements()
     symlink()
-    fishCompletions()
+    writeFishCompletions()
 
 
-# install()
-# getMainAutoCompletions()
-getCommandAutoCompletions(authParser)
+install()
